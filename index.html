@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lottery</title>
+  </head>
+  <style>
+    body {
+      font-size: 16px;
+      width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bdr-nt-2 {
+      border-top: 0;
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+    }
+
+    .bdr-nt-1 {
+      border-top: 0;
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+    .bdr-ntlb-2 {
+      border-top: 0;
+      border-left: 0;
+      border-right: 2px solid black;
+      border-bottom: 0;
+    }
+
+    .h-1 {
+      height: 5rem;
+    }
+
+    .bdr-2 {
+      border: 2px solid black;
+    }
+
+    .fs-l {
+      font-size: large;
+    }
+
+    .fs-18 {
+      font-size: 18px;
+    }
+
+    .fw-900 {
+      font-weight: 900;
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .px-2px {
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    .my-05 {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .py-05 {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .px-02 {
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+    }
+
+    .px-0p96 {
+      padding-left: 0.96rem;
+      padding-right: 0.96rem;
+    }
+
+    .px-0p94 {
+      padding-left: 0.99rem;
+      padding-right: 0.99rem;
+    }
+
+    .px-1p22 {
+      padding-left: 1.22rem;
+      padding-right: 1.22rem;
+    }
+
+    .px-1p14 {
+      padding-left: 1.14rem;
+      padding-right: 1.14rem;
+    }
+
+    .px-3p5 {
+      padding-left: 3.25rem;
+      padding-right: 3.25rem;
+    }
+
+    .mx-2p95 {
+      margin: 0rem 2.95rem 0rem 2.95rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .text-ct {
+      text-align: center;
+    }
+
+    .text-ed {
+      text-align: end;
+    }
+
+    .w-8p30 {
+      width: 8.3rem;
+    }
+
+    .w-8p55 {
+      width: 8.55rem;
+    }
+
+    .w-8p52 {
+      width: 8.52rem;
+    }
+
+    .w-8p46 {
+      width: 8.46rem;
+    }
+
+    .w-8p40 {
+      width: 8.4rem;
+    }
+
+    .w-4p92 {
+      width: 4.92rem;
+    }
+
+    .w-4p94 {
+      width: 4.94rem;
+    }
+
+    .w-5p10 {
+      width: 5.1rem;
+    }
+
+    .c-dblue {
+      color: darkblue;
+    }
+
+    .c-crimson {
+      color: crimson;
+    }
+
+    .c-dorange {
+      color: darkorange;
+    }
+
+    .c-dpink {
+      color: deeppink;
+    }
+
+    .overflow-h {
+      overflow: hidden;
+    }
+  </style>
+  <body>
+    <input
+      type="text"
+      placeholder="...."
+      class="fs-l text-ct py-05 bdr-2 w-100"
+    />
+    <div class="flex bdr-nt-2 w-100 mt-05 px-2px fw-900">
+      <div class="bdr-ntlb-2 py-05 px-02">ลำดับ</div>
+      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
+      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
+      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
+      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
+      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
+      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
+      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
+      <div class="py-05 px-3p5 c-crimson">ราคา</div>
+    </div>
+    <div id="body-lot"></div>
+    <div class="flex bdr-nt-2 w-100 mt-05 px-2px fw-900">
+      <label class="bdr-ntlb-2" style="width: 2.95rem"></label>
+      <label
+        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
+        style="width: 5.15rem"
+        >รวม1:&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
+        style="width: 8.8rem"
+        ><span id="col1ForRow">0</span>&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
+        style="width: 5.16rem"
+        >รวม2:&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
+        style="width: 8.95rem"
+        ><span id="col2ForRow">0</span>&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
+        style="width: 5.17rem"
+        >รวม3:&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
+        style="width: 8.75rem"
+        ><span id="col3ForRow">0</span>&nbsp;&nbsp;</label
+      >
+      <label
+        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
+        style="width: 5.17rem"
+        >รวม4:&nbsp;&nbsp;</label
+      >
+      <label class="py-05 text-ed overflow-h fs-18" style="width: 8.75rem"
+        ><span id="col4ForRow">0</span>&nbsp;&nbsp;</label
+      >
+    </div>
+    <div class="flex bdr-nt-2 w-100 px-2px">
+      <label class="bdr-ntlb-2" style="width: 2.95rem"></label>
+      <label
+        class="py-05 text-ed bdr-ntlb-2 overflow-h fw-900 c-dpink"
+        style="width: 14rem"
+        >ราคารวมทั้งหมด:&nbsp;&nbsp;</label
+      >
+      <label class="py-05 overflow-h fs-18 c-dpink fw-900"
+        >&nbsp;&nbsp; <span id="netPrice">0</span></label
+      >
+    </div>
+  </body>
+  <script>
+    let columns = {
+      col1ForRow: new Array(30),
+      col2ForRow: new Array(30),
+      col3ForRow: new Array(30),
+      col4ForRow: new Array(30),
+      total_col1ForRow: 0,
+      total_col2ForRow: 0,
+      total_col3ForRow: 0,
+      total_col4ForRow: 0,
+    };
+    let netPrice = 0;
+    function createBodyLot() {
+      let bodyLot = document.getElementById("body-lot");
+      for (let index = 0; index < 30; index++) {
+        bodyLot.innerHTML += `
+        <div class="flex bdr-nt-2 w-100 px-2px">
+            <div class="bdr-ntlb-2 py-05 fw-900 text-ct ${
+              index + 1 !== 11
+                ? (index + 1).toString().length > 1
+                  ? "px-0p96"
+                  : "px-1p22"
+                : "px-0p94"
+            }">${index + 1}</div>
+            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p92 text-ct fs-18" />
+            <input id="col1ForRow_${
+              index + 1
+            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p55 text-ct fs-18"
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
+            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p92 text-ct fs-18" />
+            <input id="col2ForRow_${
+              index + 1
+            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p52 text-ct fs-18"
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
+            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p94 text-ct fs-18" />
+            <input id="col3ForRow_${
+              index + 1
+            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p52 text-ct fs-18"
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
+            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p94 text-ct fs-18" />
+            <input id="col4ForRow_${
+              index + 1
+            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p46 text-ct fs-18"
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
+        </div>
+        `;
+      }
+    }
+
+    function checkValue(id, value) {
+      if (value != "") {
+        let getPosition = id.split("_");
+        columns[getPosition[0]][getPosition[1]] = addOrChangeValue(value);
+        calculateColumn(getPosition[0]);
+      }
+    }
+
+    function increaseValue(value) {
+      return parseInt(value[0]) + parseInt(value[1]);
+    }
+
+    function multiplyValue(value) {
+      return parseInt(value[0]) * parseInt(value[1]);
+    }
+
+    function addOrChangeValue(newValue) {
+      let nValue = newValue.split("X");
+      if (nValue.length > 1) return formatValue(nValue);
+      else return nValue[0].replace(/[^0-9Xx]/g, "");
+    }
+
+    function formatValue(value) {
+      let nValue = [];
+      Array.from(value).forEach((val) => {
+        nValue.push(val.replace(/[^0-9Xx]/g, ""));
+      });
+      if (value[1].indexOf("กลับ") !== -1) return multiplyValue(nValue);
+      else return increaseValue(nValue);
+    }
+
+    function calculateColumn(position) {
+      let totalprice = 0;
+      for (let index = 0; index < 30; index++) {
+        let num = parseInt(columns[position][index]);
+        totalprice += num ? num : 0;
+      }
+      document.getElementById(position).innerHTML = totalprice;
+      columns[`total_${position}`] = totalprice;
+      document.getElementById("netPrice").innerHTML =
+        columns["total_col1ForRow"] +
+        columns["total_col2ForRow"] +
+        columns["total_col3ForRow"] +
+        columns["total_col4ForRow"];
+    }
+
+    window.onload = createBodyLot;
+  </script>
+</html>
