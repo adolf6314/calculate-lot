@@ -1,0 +1,97 @@
+.container-grid {
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    gap: 1px;
+}
+
+.overflow-h {
+    overflow: hidden;
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+$colors: crimson, darkblue, deeppink, darkorange;
+
+$texts: center, start, end;
+
+$SPACE_MARGIN: (
+    m: "margin",
+    mr: "margin-right",
+    ml: "margin-left",
+    mb: "margin-bottom",
+    mt: "margin-top"
+);
+
+$SPACE_PADDING: (
+    p: "padding",
+    pr: "padding-right",
+    pl: "padding-left",
+    pb: "padding-bottom",
+    pt: "padding-top"
+);
+
+@each $text in $texts {
+    .text-#{$text} {
+        text-align: #{$text};
+    }
+}
+
+@for $i from 0 through 10 {
+    @each $spaceCssClass, $spaceCssProp in $SPACE_MARGIN {
+        @if $i == 0 {
+            .#{$spaceCssClass}-auto {
+                #{$spaceCssProp}: auto;
+            }
+        }
+        @if $i != 0 {
+            .#{$spaceCssClass}-#{$i}x {
+                #{$spaceCssProp}: #{$i - 0.5}rem;
+            }
+        }
+        .#{$spaceCssClass}-#{$i} {
+            #{$spaceCssProp}: #{$i}rem;
+        }
+    }
+    @each $spaceCssClass, $spaceCssProp in $SPACE_PADDING {
+        @if $i == 0 {
+            .#{$spaceCssClass}-auto {
+                #{$spaceCssProp}: auto;
+            }
+        }
+        @if $i != 0 {
+            .#{$spaceCssClass}-#{$i}x {
+                #{$spaceCssProp}: #{$i - 0.5}rem;
+            }
+        }
+        .#{$spaceCssClass}-#{$i} {
+            #{$spaceCssProp}: #{$i}rem;
+        }
+    }
+}
+
+@each $color in $colors {
+    .c-#{$color} {
+        color: #{$color};
+    }
+}
+
+@for $i from 1 through 21 {
+    .col-#{$i} {
+        grid-column: span #{$i};
+    }
+}
+
+@for $i from 1 through 2 {
+    .bdr-#{$i} {
+        border: #{$i}px solid black;
+    }
+    .bdr-nt-#{$i} {
+        border: #{$i}px solid black;
+        border-top: 0;
+    }
+    .bdr-ntlb-#{$i} {
+        border-right: #{$i}px solid black;
+    }
+}
