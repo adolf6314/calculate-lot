@@ -174,17 +174,25 @@
   </style>
 
   <body>
-    <div class="container-grid bdr-2 fw-bold text-ct mb-5">
-      <div class="col-1 bdr-ntlb-2 pt-1x pb-1x">ลำดับ</div>
-      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x">ตัวเลข</div>
-      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x">ราคา</div>
-      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x">ตัวเลข</div>
-      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x">ราคา</div>
-      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x">ตัวเลข</div>
-      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x">ราคา</div>
-      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x">ตัวเลข</div>
-      <div class="col-3 pt-1x pb-1x">ราคา</div>
+    <div class="container-grid">
+      <input
+        type="text"
+        class="bdr-nb-2 fs-18 text-ct col-21 pt-1x pb-1x"
+        placeholder="ป้อนหมายเลขกระดาษ"
+      />
     </div>
+    <div class="container-grid bdr-2 fw-bold text-ct">
+      <div class="col-1 bdr-ntlb-2 pt-1x pb-1x">ลำดับ</div>
+      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
+      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x c-crimson">ราคา</div>
+      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
+      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x c-crimson">ราคา</div>
+      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
+      <div class="col-3 bdr-ntlb-2 pt-1x pb-1x c-crimson">ราคา</div>
+      <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
+      <div class="col-3 pt-1x pb-1x c-crimson">ราคา</div>
+    </div>
+    <div id="body-lot" class="mb-2"></div>
 
     <input
       type="text"
@@ -202,7 +210,7 @@
       <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
       <div class="py-05 px-3p5 c-crimson">ราคา</div>
     </div>
-    <div id="body-lot"></div>
+    <!-- <div id="body-lot"></div> -->
     <div class="flex bdr-nt-2 w-100 mt-05 px-2px fw-900">
       <label class="bdr-ntlb-2" style="width: 2.95rem"></label>
       <label
@@ -270,37 +278,23 @@
     let netPrice = 0;
     function createBodyLot() {
       let bodyLot = document.getElementById("body-lot");
-      for (let index = 0; index < 30; index++) {
+      for (let index = 1; index < 31; index++) {
         bodyLot.innerHTML += `
-        <div class="flex bdr-nt-2 w-100 px-2px">
-            <div class="bdr-ntlb-2 py-05 fw-900 text-ct ${
-              index + 1 !== 11
-                ? (index + 1).toString().length > 1
-                  ? "px-0p96"
-                  : "px-1p22"
-                : "px-0p94"
-            }">${index + 1}</div>
-            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p92 text-ct fs-18" />
-            <input id="col1ForRow_${
-              index + 1
-            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p55 text-ct fs-18"
-            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
-            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p92 text-ct fs-18" />
-            <input id="col2ForRow_${
-              index + 1
-            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p52 text-ct fs-18"
-            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
-            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p94 text-ct fs-18" />
-            <input id="col3ForRow_${
-              index + 1
-            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p52 text-ct fs-18"
-            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
-            <input type="text" class="bdr-ntlb-2 py-05 c-dblue w-4p94 text-ct fs-18" />
-            <input id="col4ForRow_${
-              index + 1
-            }" type="text" class="bdr-ntlb-2 py-05 c-crimson w-8p46 text-ct fs-18"
-            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)" />
-        </div>
+          <div class="container-grid bdr-nt-2">
+            <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-ct">${index}</div>
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
+            <input id="col1ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
+            <input id="col2ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
+            <input id="col3ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
+            <input id="col4ForRow_${index}" type="text" class="col-3 bdr-0 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+          </div>
         `;
       }
     }
@@ -310,6 +304,7 @@
         let getPosition = id.split("_");
         columns[getPosition[0]][getPosition[1]] = addOrChangeValue(value);
         calculateColumn(getPosition[0]);
+        window.alert("555");
       }
     }
 
@@ -353,9 +348,4 @@
 
     window.onload = createBodyLot;
   </script>
-  <!-- <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"
-  ></script> -->
 </html>

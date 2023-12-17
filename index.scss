@@ -12,6 +12,22 @@
     font-weight: bold;
 }
 
+.w-100 {
+    width: 100%;
+}
+
+.fs-17 {
+    font-size: 17px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.bdr-0 {
+    border: 0;
+}
+
 $colors: crimson, darkblue, deeppink, darkorange;
 
 $texts: center, start, end;
@@ -90,6 +106,10 @@ $SPACE_PADDING: (
     .bdr-nt-#{$i} {
         border: #{$i}px solid black;
         border-top: 0;
+    }
+    .bdr-nb-#{$i} {
+        border: #{$i}px solid black;
+        border-bottom: 0;
     }
     .bdr-ntlb-#{$i} {
         border-right: #{$i}px solid black;
