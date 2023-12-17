@@ -192,7 +192,10 @@
       <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
       <div class="col-3 pt-1x pb-1x c-crimson">ราคา</div>
     </div>
-    <div id="body-lot" class="mb-2"></div>
+    <div id="body-lot"></div>
+    <div class="container-grid bdr-nt-2 mb-2">
+      <div class="col-1 bdr-ntlb-2 pt-1x pb-1x"></div>
+    </div>
 
     <input
       type="text"
@@ -283,13 +286,13 @@
           <div class="container-grid bdr-nt-2">
             <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-ct">${index}</div>
             <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col1ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input id="col1ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
             <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col2ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input id="col2ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
             <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col3ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input id="col3ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
             <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
             <input id="col4ForRow_${index}" type="text" class="col-3 bdr-0 fs-17 pt-1x pb-1x text-ct c-crimson" 
@@ -304,7 +307,8 @@
         let getPosition = id.split("_");
         columns[getPosition[0]][getPosition[1]] = addOrChangeValue(value);
         calculateColumn(getPosition[0]);
-        window.alert("555");
+        document.getElementById(id).value =
+          columns[getPosition[0]][getPosition[1]];
       }
     }
 
