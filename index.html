@@ -94,21 +94,29 @@
         bodyLot.innerHTML += `
           <div class="container-grid bdr-nt-2">
             <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-center">${index}</div>
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col1ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue" 
+            onchange="checkNumber(this.id, this.value)">
             <input id="col1ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col2ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue" 
+            onchange="checkNumber(this.id, this.value)">
             <input id="col2ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col3ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue" 
+            onchange="checkNumber(this.id, this.value)">
             <input id="col3ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col4ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue" 
+            onchange="checkNumber(this.id, this.value)">
             <input id="col4ForRow_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
           </div>
         `;
       }
+    }
+
+    function checkNumber(id, value) {
+      document.getElementById(id).value = value.replace(/[^0-9]/g, "");
     }
 
     function checkValue(id, value) {
