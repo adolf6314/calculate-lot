@@ -18,175 +18,17 @@
       border: 0;
       border-radius: 0;
     }
-
-    .bdr-nt-2 {
-      border-top: 0;
-      border-left: 2px solid black;
-      border-right: 2px solid black;
-      border-bottom: 2px solid black;
-    }
-
-    .bdr-nt-1 {
-      border-top: 0;
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-      border-bottom: 1px solid black;
-    }
-
-    .bdr-ntlb-2 {
-      border-top: 0;
-      border-left: 0;
-      border-right: 2px solid black;
-      border-bottom: 0;
-    }
-
-    .h-1 {
-      height: 5rem;
-    }
-
-    .bdr-2 {
-      border: 2px solid black;
-    }
-
-    .fs-l {
-      font-size: large;
-    }
-
-    .fs-18 {
-      font-size: 18px;
-    }
-
-    .fw-900 {
-      font-weight: 900;
-    }
-
-    .w-100 {
-      width: 100%;
-    }
-
-    .px-2px {
-      padding-left: 2px;
-      padding-right: 2px;
-    }
-
-    .my-05 {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .py-05 {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
-
-    .px-02 {
-      padding-left: 0.2rem;
-      padding-right: 0.2rem;
-    }
-
-    .px-0p96 {
-      padding-left: 0.96rem;
-      padding-right: 0.96rem;
-    }
-
-    .px-0p94 {
-      padding-left: 0.99rem;
-      padding-right: 0.99rem;
-    }
-
-    .px-1p22 {
-      padding-left: 1.22rem;
-      padding-right: 1.22rem;
-    }
-
-    .px-1p14 {
-      padding-left: 1.14rem;
-      padding-right: 1.14rem;
-    }
-
-    .px-3p5 {
-      padding-left: 3.25rem;
-      padding-right: 3.25rem;
-    }
-
-    .mx-2p95 {
-      margin: 0rem 2.95rem 0rem 2.95rem;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .text-ct {
-      text-align: center;
-    }
-
-    .text-ed {
-      text-align: end;
-    }
-
-    .w-8p30 {
-      width: 8.3rem;
-    }
-
-    .w-8p55 {
-      width: 8.55rem;
-    }
-
-    .w-8p52 {
-      width: 8.52rem;
-    }
-
-    .w-8p46 {
-      width: 8.46rem;
-    }
-
-    .w-8p40 {
-      width: 8.4rem;
-    }
-
-    .w-4p92 {
-      width: 4.92rem;
-    }
-
-    .w-4p94 {
-      width: 4.94rem;
-    }
-
-    .w-5p10 {
-      width: 5.1rem;
-    }
-
-    .c-dblue {
-      color: darkblue;
-    }
-
-    .c-crimson {
-      color: crimson;
-    }
-
-    .c-dorange {
-      color: darkorange;
-    }
-
-    .c-dpink {
-      color: deeppink;
-    }
-
-    .overflow-h {
-      overflow: hidden;
-    }
   </style>
 
   <body>
     <div class="container-grid">
       <input
         type="text"
-        class="bdr-nb-2 fs-18 text-ct col-21 pt-1x pb-1x"
+        class="bdr-nb-2 fs-18 text-center col-21 pt-1x pb-1x"
         placeholder="ป้อนหมายเลขกระดาษ"
       />
     </div>
-    <div class="container-grid bdr-2 fw-bold text-ct">
+    <div class="container-grid bdr-2 fw-bold text-center">
       <div class="col-1 bdr-ntlb-2 pt-1x pb-1x">ลำดับ</div>
       <div class="col-2 bdr-ntlb-2 pt-1x pb-1x c-darkblue">ตัวเลข</div>
       <div class="col-3 bdr-ntlb-2 pt-1x pb-1x c-crimson">ราคา</div>
@@ -198,78 +40,40 @@
       <div class="col-3 pt-1x pb-1x c-crimson">ราคา</div>
     </div>
     <div id="body-lot"></div>
-    <div class="container-grid bdr-nt-2 mb-2">
+    <div class="container-grid bdr-nt-2 fw-bold">
       <div class="col-1 bdr-ntlb-2 pt-1x pb-1x"></div>
+      <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end">
+        รวม1:&nbsp;&nbsp;
+      </div>
+      <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
+        <span id="col1ForRow">0</span>&nbsp;&nbsp;
+      </div>
+      <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end">
+        รวม2:&nbsp;&nbsp;
+      </div>
+      <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
+        <span id="col2ForRow">0</span>&nbsp;&nbsp;
+      </div>
+      <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end">
+        รวม3:&nbsp;&nbsp;
+      </div>
+      <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
+        <span id="col3ForRow">0</span>&nbsp;&nbsp;
+      </div>
+      <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end">
+        รวม4:&nbsp;&nbsp;
+      </div>
+      <div class="col-3 fs-17 pt-1x pb-1x text-end overflow-h">
+        <span id="col4ForRow">0</span>&nbsp;&nbsp;
+      </div>
     </div>
-
-    <input
-      type="text"
-      placeholder="...."
-      class="fs-l text-ct py-05 bdr-2 w-100"
-    />
-    <div class="flex bdr-nt-2 w-100 mt-05 px-2px fw-900">
-      <div class="bdr-ntlb-2 py-05 px-02">ลำดับ</div>
-      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
-      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
-      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
-      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
-      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
-      <div class="bdr-ntlb-2 py-05 px-3p5 c-crimson">ราคา</div>
-      <div class="bdr-ntlb-2 py-05 px-1p14 c-dblue">ตัวเลข</div>
-      <div class="py-05 px-3p5 c-crimson">ราคา</div>
-    </div>
-    <!-- <div id="body-lot"></div> -->
-    <div class="flex bdr-nt-2 w-100 mt-05 px-2px fw-900">
-      <label class="bdr-ntlb-2" style="width: 2.95rem"></label>
-      <label
-        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
-        style="width: 5.15rem"
-        >รวม1:&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
-        style="width: 8.8rem"
-        ><span id="col1ForRow">0</span>&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
-        style="width: 5.16rem"
-        >รวม2:&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
-        style="width: 8.95rem"
-        ><span id="col2ForRow">0</span>&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
-        style="width: 5.17rem"
-        >รวม3:&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 bdr-ntlb-2 text-ed overflow-h fs-18"
-        style="width: 8.75rem"
-        ><span id="col3ForRow">0</span>&nbsp;&nbsp;</label
-      >
-      <label
-        class="py-05 text-ed bdr-ntlb-2 overflow-h c-dorange"
-        style="width: 5.17rem"
-        >รวม4:&nbsp;&nbsp;</label
-      >
-      <label class="py-05 text-ed overflow-h fs-18" style="width: 8.75rem"
-        ><span id="col4ForRow">0</span>&nbsp;&nbsp;</label
-      >
-    </div>
-    <div class="flex bdr-nt-2 w-100 px-2px">
-      <label class="bdr-ntlb-2" style="width: 2.95rem"></label>
-      <label
-        class="py-05 text-ed bdr-ntlb-2 overflow-h fw-900 c-dpink"
-        style="width: 14rem"
-        >ราคารวมทั้งหมด:&nbsp;&nbsp;</label
-      >
-      <label class="py-05 overflow-h fs-18 c-dpink fw-900"
-        >&nbsp;&nbsp; <span id="netPrice">0</span></label
-      >
+    <div class="container-grid bdr-nt-2 fw-bold c-deeppink">
+      <div class="col-6 fs-17 bdr-ntlb-2 text-end pt-1x pb-1x">
+        ราคารวมทั้งหมด:&nbsp;&nbsp;
+      </div>
+      <div class="col-15 fs-17 pt-1x pb-1x">
+        &nbsp;<span id="netPrice">0</span>&nbsp;บาท
+      </div>
     </div>
   </body>
   <script>
@@ -289,18 +93,18 @@
       for (let index = 1; index < 31; index++) {
         bodyLot.innerHTML += `
           <div class="container-grid bdr-nt-2">
-            <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-ct">${index}</div>
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col1ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-center">${index}</div>
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col1ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col2ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col2ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col3ForRow_${index}" type="text" class="col-3 bdr-0 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col3ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-ct c-darkblue">
-            <input id="col4ForRow_${index}" type="text" class="col-3 bdr-0 fs-17 pt-1x pb-1x text-ct c-crimson" 
+            <input type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue">
+            <input id="col4ForRow_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson" 
             oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
           </div>
         `;
@@ -312,8 +116,10 @@
         let getPosition = id.split("_");
         columns[getPosition[0]][getPosition[1]] = addOrChangeValue(value);
         calculateColumn(getPosition[0]);
-        document.getElementById(id).value =
-          columns[getPosition[0]][getPosition[1]];
+        document.getElementById(id).value = value.replace(
+          /[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g,
+          ""
+        );
       }
     }
 
