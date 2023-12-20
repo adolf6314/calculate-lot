@@ -168,6 +168,17 @@
         columns["total_col3ForRow"] +
         columns["total_col4ForRow"];
     }
+    async function fetchXmlData() {
+      try {
+        const response = await fetch("https://calculate-server.vercel.app/xml");
+        const xmlData = await response.text();
+        document.getElementById("xmlData").innerText = xmlData;
+        console.log(xmlData);
+      } catch (error) {
+        console.error("Error fetching XML data:", error.message);
+      }
+    }
+    fetchXmlData();
 
     window.onload = createBodyLot;
   </script>

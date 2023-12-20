@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Viewer</title>
+</head>
+<body>
+  <h1>XML Data</h1>
+  <pre id="xmlData"></pre>
+
+  <script>
+    async function fetchXmlData() {
+      try {
+        const response = await fetch('/xml');
+        const xmlData = await response.text();
+        document.getElementById('xmlData').innerText = xmlData;
+      } catch (error) {
+        console.error('Error fetching XML data:', error.message);
+      }
+    }
+
+    fetchXmlData();
+  </script>
+</body>
+</html>
