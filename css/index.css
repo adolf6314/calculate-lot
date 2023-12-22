@@ -28,6 +28,10 @@
   border: 0;
 }
 
+.b-darkorange {
+  background-color: darkorange;
+}
+
 .text-center {
   text-align: center;
 }

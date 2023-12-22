@@ -21,6 +21,68 @@
   </style>
 
   <body>
+    <div class="container-grid mb-1x">
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="page = 1, createBodyLot()"
+      >
+        1
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="page = 2, createBodyLot()"
+      >
+        2
+      </button>
+      <!-- <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(3)"
+      >
+        3
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(4)"
+      >
+        4
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(5)"
+      >
+        5
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(6)"
+      >
+        6
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(7)"
+      >
+        7
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(8)"
+      >
+        8
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(9)"
+      >
+        9
+      </button>
+      <button
+        class="col-2 b-darkorange fs-18"
+        onclick="setValueOnPage(10)"
+      >
+        10
+      </button> -->
+    </div>
     <div class="container-grid">
       <input
         type="text"
@@ -46,25 +108,25 @@
         รวม1:&nbsp;&nbsp;
       </div>
       <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
-        <span id="col1ForRow">0</span>&nbsp;&nbsp;
+        <span id="c1FR">0</span>&nbsp;&nbsp;
       </div>
       <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end c-darkorange">
         รวม2:&nbsp;&nbsp;
       </div>
       <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
-        <span id="col2ForRow">0</span>&nbsp;&nbsp;
+        <span id="c2FR">0</span>&nbsp;&nbsp;
       </div>
       <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end c-darkorange">
         รวม3:&nbsp;&nbsp;
       </div>
       <div class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end overflow-h">
-        <span id="col3ForRow">0</span>&nbsp;&nbsp;
+        <span id="c3FR">0</span>&nbsp;&nbsp;
       </div>
       <div class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-end c-darkorange">
         รวม4:&nbsp;&nbsp;
       </div>
       <div class="col-3 fs-17 pt-1x pb-1x text-end overflow-h">
-        <span id="col4ForRow">0</span>&nbsp;&nbsp;
+        <span id="c4FR">0</span>&nbsp;&nbsp;
       </div>
     </div>
     <div class="container-grid bdr-nt-2 fw-bold c-deeppink">
@@ -78,64 +140,89 @@
   </body>
   <script>
     let columns = {
-      col1ForRow: new Array(30),
-      col2ForRow: new Array(30),
-      col3ForRow: new Array(30),
-      col4ForRow: new Array(30),
-      total_col1ForRow: 0,
-      total_col2ForRow: 0,
-      total_col3ForRow: 0,
-      total_col4ForRow: 0,
+      c1FNR: new Array(30),
+      c2FNR: new Array(30),
+      c3FNR: new Array(30),
+      c4FNR: new Array(30),
+      c1FR: new Array(30),
+      c2FR: new Array(30),
+      c3FR: new Array(30),
+      c4FR: new Array(30),
+      total_c1FR: 0,
+      total_c2FR: 0,
+      total_c3FR: 0,
+      total_c4FR: 0,
     };
     let netPrice = 0;
-    function createBodyLot() {
-      const lottery = getBackupValueOnPage(1);
-      console.log(lottery);
-      let lotIndex = 8;
+    let page = 1;
+
+    async function createBodyLot() {
+      await setValueOnPage();
+      for (let index = 1; index < 5; index++) calculateColumn(`c${index}FR`);
       let bodyLot = document.getElementById("body-lot");
-      // for (let index = 1; index < 31; index++) {
-      //   bodyLot.innerHTML += `
-      //     <div class="container-grid bdr-nt-2">
-      //       <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-center">${index}</div>
-      //       <input id="col1ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
-      //       value="${
-      //         lottery[lotIndex - 8].page_detail
-      //       }" onchange="checkNumber(this.id, this.value)">
-      //       <input id="col1ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
-      //       value="${
-      //         lottery[lotIndex - 7].page_detail
-      //       }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-      //       <input id="col2ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
-      //       onchange="checkNumber(this.id, this.value)">
-      //       <input id="col2ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
-      //       oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-      //       <input id="col3ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
-      //       onchange="checkNumber(this.id, this.value)">
-      //       <input id="col3ForRow_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
-      //       oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-      //       <input id="col4ForNRow_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
-      //       onchange="checkNumber(this.id, this.value)">
-      //       <input id="col4ForRow_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson"
-      //       oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
-      //     </div>
-      //   `;
-      // }
+      bodyLot.innerHTML = "";
+      for (let index = 0; index < 30; index++) {
+        bodyLot.innerHTML += `
+          <div class="container-grid bdr-nt-2">
+            <div class="col-1 bdr-ntlb-2 fw-bold fs-18 pt-1x pb-1x text-center">${
+              index + 1
+            }</div>
+            <input id="c1FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
+            value="${
+              columns.c1FNR[index]
+            }" onchange="checkNumber(this.id, this.value)">
+            <input id="c1FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
+            value="${
+              !columns.c1FR[index] ? "" : columns.c1FR[index].split(":")[1]
+            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input id="c2FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
+            value="${
+              columns.c2FNR[index]
+            }" onchange="checkNumber(this.id, this.value)">
+            <input id="c2FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
+            value="${
+              !columns.c2FR[index] ? "" : columns.c2FR[index].split(":")[1]
+            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input id="c3FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
+            value="${
+              columns.c3FNR[index]
+            }" onchange="checkNumber(this.id, this.value)">
+            <input id="c3FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
+            value="${
+              !columns.c3FR[index] ? "" : columns.c3FR[index].split(":")[1]
+            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            <input id="c4FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
+            value="${
+              columns.c4FNR[index]
+            }" onchange="checkNumber(this.id, this.value)">
+            <input id="c4FR_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson"
+            value="${
+              !columns.c4FR[index] ? "" : columns.c4FR[index].split(":")[1]
+            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+          </div>
+        `;
+      }
     }
 
     function checkNumber(id, value) {
-      document.getElementById(id).value = value.replace(/[^0-9]/g, "");
+      const result = value.replace(/[^0-9]/g, "");
+      const keys = id.split("_");
+      document.getElementById(id).value = result;
+      columns[keys[0]][keys[1]] = result;
+      setBackupValueOnPage();
     }
 
     function checkValue(id, value) {
-      if (value != "") {
-        let getPosition = id.split("_");
-        columns[getPosition[0]][getPosition[1]] = addOrChangeValue(value);
-        calculateColumn(getPosition[0]);
-        document.getElementById(id).value = value.replace(
-          /[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g,
-          ""
-        );
-      }
+      let getPosition = id.split("_");
+      columns[getPosition[0]][getPosition[1]] = `${addOrChangeValue(
+        value
+      )}:${value}`;
+      calculateColumn(getPosition[0]);
+      document.getElementById(id).value = value.replace(
+        /[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g,
+        ""
+      );
+      setBackupValueOnPage();
     }
 
     function increaseValue(value) {
@@ -164,26 +251,36 @@
     function calculateColumn(position) {
       let totalprice = 0;
       for (let index = 0; index < 30; index++) {
-        let num = parseInt(columns[position][index]);
+        let num = parseInt(columns[position][index].split(":")[0]);
         totalprice += num ? num : 0;
       }
       document.getElementById(position).innerHTML = totalprice;
       columns[`total_${position}`] = totalprice;
       document.getElementById("netPrice").innerHTML =
-        columns["total_col1ForRow"] +
-        columns["total_col2ForRow"] +
-        columns["total_col3ForRow"] +
-        columns["total_col4ForRow"];
+        columns["total_c1FR"] +
+        columns["total_c2FR"] +
+        columns["total_c3FR"] +
+        columns["total_c4FR"];
     }
 
-    async function getBackupValueOnPage(page) {
+    async function setValueOnPage() {
+      const lottery = Object.values(await getBackupValueOnPage());
+      lottery.forEach((item) => {
+        let key = item.split("=");
+        let value = key[1].split("\r")[0];
+        key = key[0].split("_");
+        let index = key[1];
+        columns[key[0]][index] = value;
+      });
+    }
+
+    async function getBackupValueOnPage() {
       try {
-        const response = await fetch("https://lottery-api-sigma.vercel.app/", {
-          method: "POST",
+        const response = await fetch(`http://localhost:5000?page=${page}`, {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ page: page }),
         });
         if (response.ok) {
           const data = await response.text();
@@ -194,6 +291,31 @@
       }
     }
 
+    function setBackupValueOnPage() {
+      let lottery = "";
+      for (let index = 0; index < 30; index++) {
+        lottery += `c1FNR_${index}=${columns.c1FNR[index]}\nc1FR_${index}=${columns.c1FR[index]}\n`;
+        lottery += `c2FNR_${index}=${columns.c2FNR[index]}\nc2FR_${index}=${columns.c2FR[index]}\n`;
+        lottery += `c3FNR_${index}=${columns.c3FNR[index]}\nc3FR_${index}=${columns.c3FR[index]}\n`;
+        lottery += `c4FNR_${index}=${columns.c4FNR[index]}\nc4FR_${index}=${
+          columns.c4FR[index]
+        }${index > 28 ? "" : "\n"}`;
+      }
+      try {
+        const response = fetch("http://localhost:5000/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ page: page, content: lottery }),
+        });
+        if (response.ok) {
+          console.log(response.text);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
     window.onload = createBodyLot;
   </script>
 </html>
