@@ -34,60 +34,62 @@
       >
         2
       </button>
-      <!-- <button
+      <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(3)"
+        onclick="page = 3, createBodyLot()"
       >
         3
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(4)"
+        onclick="page = 4, createBodyLot()"
       >
         4
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(5)"
+        onclick="page = 5, createBodyLot()"
       >
         5
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(6)"
+        onclick="page = 6, createBodyLot()"
       >
         6
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(7)"
+        onclick="page = 7, createBodyLot()"
       >
         7
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(8)"
+        onclick="page = 8, createBodyLot()"
       >
         8
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(9)"
+        onclick="page = 9, createBodyLot()"
       >
         9
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="setValueOnPage(10)"
+        onclick="page = 10, createBodyLot()"
       >
         10
-      </button> -->
+      </button>
     </div>
     <div class="container-grid">
       <input
+        id="name"
         type="text"
         class="bdr-nb-2 fs-18 text-center col-21 pt-1x pb-1x"
         placeholder="ป้อนหมายเลขกระดาษ"
+        onchange="columns.name = this.value, setBackupValueOnPage()"
       />
     </div>
     <div class="container-grid bdr-2 fw-bold text-center">
@@ -140,6 +142,7 @@
   </body>
   <script>
     let columns = {
+      name: "",
       c1FNR: new Array(30),
       c2FNR: new Array(30),
       c3FNR: new Array(30),
@@ -160,6 +163,7 @@
       await setValueOnPage();
       for (let index = 1; index < 5; index++) calculateColumn(`c${index}FR`);
       let bodyLot = document.getElementById("body-lot");
+      document.getElementById("name").value = columns.name;
       bodyLot.innerHTML = "";
       for (let index = 0; index < 30; index++) {
         bodyLot.innerHTML += `
@@ -170,37 +174,61 @@
             <input id="c1FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
               columns.c1FNR[index]
-            }" onchange="checkNumber(this.id, this.value)">
+            }" onchange="checkNumber(this.id, this.value)" onkeydown="setFocusInput(${index}, 0)">
             <input id="c1FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c1FR[index] ? "" : columns.c1FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            }" oninput="this.value = this.value.toUpperCase();" 
+            onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 1)">
             <input id="c2FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
               columns.c2FNR[index]
-            }" onchange="checkNumber(this.id, this.value)">
+            }" onchange="checkNumber(this.id, this.value)" onkeydown="setFocusInput(${index}, 2)">
             <input id="c2FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c2FR[index] ? "" : columns.c2FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            }" oninput="this.value = this.value.toUpperCase();" 
+            onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 3)">
             <input id="c3FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
               columns.c3FNR[index]
-            }" onchange="checkNumber(this.id, this.value)">
+            }" onchange="checkNumber(this.id, this.value)" onkeydown="setFocusInput(${index}, 4)">
             <input id="c3FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c3FR[index] ? "" : columns.c3FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            }" oninput="this.value = this.value.toUpperCase();" 
+            onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 5)">
             <input id="c4FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
               columns.c4FNR[index]
-            }" onchange="checkNumber(this.id, this.value)">
+            }" onchange="checkNumber(this.id, this.value)" onkeydown="setFocusInput(${index}, 6)">
             <input id="c4FR_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c4FR[index] ? "" : columns.c4FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" onchange="checkValue(this.id, this.value)">
+            }" oninput="this.value = this.value.toUpperCase();" 
+            onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 7)">
           </div>
         `;
+      }
+    }
+
+    function setFocusInput(index, id) {
+      const colID = [
+        "c1FNR",
+        "c1FR",
+        "c2FNR",
+        "c2FR",
+        "c3FNR",
+        "c3FR",
+        "c4FNR",
+        "c4FR",
+      ];
+      if (event.key == "ArrowDown") {
+        if (index < 29)
+          document.getElementById(`${colID[id]}_${index + 1}`).focus();
+      } else if (event.key == "ArrowUp") {
+        if (index > 0)
+          document.getElementById(`${colID[id]}_${index - 1}`).focus();
       }
     }
 
@@ -216,7 +244,7 @@
       let getPosition = id.split("_");
       columns[getPosition[0]][getPosition[1]] = `${addOrChangeValue(
         value
-      )}:${value}`;
+      )}:${value.replace(/[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g, "")}`;
       calculateColumn(getPosition[0]);
       document.getElementById(id).value = value.replace(
         /[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g,
@@ -265,13 +293,14 @@
 
     async function setValueOnPage() {
       const lottery = Object.values(await getBackupValueOnPage());
-      lottery.forEach((item) => {
-        let key = item.split("=");
+      columns.name = lottery[0].split("=")[1];
+      for (let i = 1; i < lottery.length; i++) {
+        let key = lottery[i].split("=");
         let value = key[1].split("\r")[0];
         key = key[0].split("_");
         let index = key[1];
         columns[key[0]][index] = value;
-      });
+      }
     }
 
     async function getBackupValueOnPage() {
@@ -293,6 +322,7 @@
 
     function setBackupValueOnPage() {
       let lottery = "";
+      lottery += `name=${columns.name}\n`;
       for (let index = 0; index < 30; index++) {
         lottery += `c1FNR_${index}=${columns.c1FNR[index]}\nc1FR_${index}=${columns.c1FR[index]}\n`;
         lottery += `c2FNR_${index}=${columns.c2FNR[index]}\nc2FR_${index}=${columns.c2FR[index]}\n`;
