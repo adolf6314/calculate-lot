@@ -24,63 +24,57 @@
     <div class="container-grid mb-1x">
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 1, createBodyLot()"
+        onclick="page = 'page_number_1', createBodyLot()"
       >
         1
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 2, createBodyLot()"
+        onclick="page = 'page_number_2', createBodyLot()"
       >
         2
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 3, createBodyLot()"
+        onclick="page = 'page_number_3', createBodyLot()"
       >
         3
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 4, createBodyLot()"
+        onclick="page = 'page_number_4', createBodyLot()"
       >
         4
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 5, createBodyLot()"
+        onclick="page = 'page_number_5', createBodyLot()"
       >
         5
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 6, createBodyLot()"
+        onclick="page = 'page_number_6', createBodyLot()"
       >
         6
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 7, createBodyLot()"
+        onclick="page = 'page_number_7', createBodyLot()"
       >
         7
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 8, createBodyLot()"
+        onclick="page = 'page_number_8', createBodyLot()"
       >
         8
       </button>
       <button
         class="col-2 b-darkorange fs-18"
-        onclick="page = 9, createBodyLot()"
+        onclick="page = 'page_number_9', createBodyLot()"
       >
         9
-      </button>
-      <button
-        class="col-2 b-darkorange fs-18"
-        onclick="page = 10, createBodyLot()"
-      >
-        10
       </button>
     </div>
     <div class="container-grid">
@@ -89,7 +83,7 @@
         type="text"
         class="bdr-nb-2 fs-18 text-center col-21 pt-1x pb-1x"
         placeholder="ป้อนหมายเลขกระดาษ"
-        onchange="columns.name = this.value, setBackupValueOnPage()"
+        onchange="columns.name = this.value, setBackupValueOnPage([this.value])"
       />
     </div>
     <div class="container-grid bdr-2 fw-bold text-center">
@@ -156,8 +150,18 @@
       total_c3FR: 0,
       total_c4FR: 0,
     };
+    const keyOnColumns = [
+      "c1FNR",
+      "c1FR",
+      "c2FNR",
+      "c2FR",
+      "c3FNR",
+      "c3FR",
+      "c4FNR",
+      "c4FR",
+    ];
     let netPrice = 0;
-    let page = 1;
+    let page = "page_number_1";
 
     async function createBodyLot() {
       await setValueOnPage();
@@ -178,7 +182,7 @@
             <input id="c1FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c1FR[index] ? "" : columns.c1FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" 
+            }" oninput="this.value = this.value.toUpperCase();"
             onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 1)">
             <input id="c2FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
@@ -187,7 +191,7 @@
             <input id="c2FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c2FR[index] ? "" : columns.c2FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" 
+            }" oninput="this.value = this.value.toUpperCase();"
             onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 3)">
             <input id="c3FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
@@ -196,7 +200,7 @@
             <input id="c3FR_${index}" type="text" class="col-3 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c3FR[index] ? "" : columns.c3FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" 
+            }" oninput="this.value = this.value.toUpperCase();"
             onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 5)">
             <input id="c4FNR_${index}" type="text" class="col-2 bdr-ntlb-2 fs-17 pt-1x pb-1x text-center c-darkblue"
             value="${
@@ -205,7 +209,7 @@
             <input id="c4FR_${index}" type="text" class="col-3 fs-17 pt-1x pb-1x text-center c-crimson"
             value="${
               !columns.c4FR[index] ? "" : columns.c4FR[index].split(":")[1]
-            }" oninput="this.value = this.value.toUpperCase();" 
+            }" oninput="this.value = this.value.toUpperCase();"
             onchange="checkValue(this.id, this.value)" onkeydown="setFocusInput(${index}, 7)">
           </div>
         `;
@@ -213,44 +217,34 @@
     }
 
     function setFocusInput(index, id) {
-      const colID = [
-        "c1FNR",
-        "c1FR",
-        "c2FNR",
-        "c2FR",
-        "c3FNR",
-        "c3FR",
-        "c4FNR",
-        "c4FR",
-      ];
       if (event.key == "ArrowDown") {
         if (index < 29)
-          document.getElementById(`${colID[id]}_${index + 1}`).focus();
+          document.getElementById(`${keyOnColumns[id]}_${index + 1}`).focus();
       } else if (event.key == "ArrowUp") {
         if (index > 0)
-          document.getElementById(`${colID[id]}_${index - 1}`).focus();
+          document.getElementById(`${keyOnColumns[id]}_${index - 1}`).focus();
       }
     }
 
-    function checkNumber(id, value) {
-      const result = value.replace(/[^0-9]/g, "");
-      const keys = id.split("_");
-      document.getElementById(id).value = result;
-      columns[keys[0]][keys[1]] = result;
-      setBackupValueOnPage();
+    async function checkNumber(id, value) {
+      value = value.replace(/[^0-9]/g, "");
+      const getPosition = id.split("_");
+      document.getElementById(id).value = value;
+      columns[getPosition[0]][getPosition[1]] = value;
+      await setBackupValueOnPage(setContentElement(getPosition, value));
     }
 
-    function checkValue(id, value) {
+    async function checkValue(id, value) {
       let getPosition = id.split("_");
+      value = value.replace(/[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g, "");
       columns[getPosition[0]][getPosition[1]] = `${addOrChangeValue(
         value
-      )}:${value.replace(/[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g, "")}`;
+      )}:${value}`;
       calculateColumn(getPosition[0]);
-      document.getElementById(id).value = value.replace(
-        /[^0-9Xx\u0e01\u0e25\u0e31\u0e1a]/g,
-        ""
+      document.getElementById(id).value = value;
+      await setBackupValueOnPage(
+        setContentElement(getPosition, columns[getPosition[0]][getPosition[1]])
       );
-      setBackupValueOnPage();
     }
 
     function increaseValue(value) {
@@ -279,8 +273,10 @@
     function calculateColumn(position) {
       let totalprice = 0;
       for (let index = 0; index < 30; index++) {
-        let num = parseInt(columns[position][index].split(":")[0]);
-        totalprice += num ? num : 0;
+        if (columns[position][index]) {
+          let num = parseInt(columns[position][index].split(":")[0]);
+          totalprice += num ? num : 0;
+        }
       }
       document.getElementById(position).innerHTML = totalprice;
       columns[`total_${position}`] = totalprice;
@@ -292,21 +288,27 @@
     }
 
     async function setValueOnPage() {
-      const lottery = Object.values(await getBackupValueOnPage());
-      columns.name = lottery[0].split("=")[1];
-      for (let i = 1; i < lottery.length; i++) {
-        let key = lottery[i].split("=");
-        let value = key[1].split("\r")[0];
-        key = key[0].split("_");
-        let index = key[1];
-        columns[key[0]][index] = value;
-      }
+      const lottery = await getBackupValueOnPage();
+      columns.name = lottery["name"];
+      Object.keys(lottery)
+        .filter((item) => item !== "name")
+        .forEach((key) => {
+          const index = parseInt(key.split("_")[1]) - 1;
+          columns.c1FNR[index] = lottery[key][0];
+          columns.c1FR[index] = lottery[key][1];
+          columns.c2FNR[index] = lottery[key][2];
+          columns.c2FR[index] = lottery[key][3];
+          columns.c3FNR[index] = lottery[key][4];
+          columns.c3FR[index] = lottery[key][5];
+          columns.c4FNR[index] = lottery[key][6];
+          columns.c4FR[index] = lottery[key][7];
+        });
     }
 
     async function getBackupValueOnPage() {
       try {
         const response = await fetch(
-          `https://lottery-api-sigma.vercel.app?page=${page}`,
+          `https://lot-server.vercel.app/present-content-on-page?page=${page}`,
           {
             method: "GET",
             headers: {
@@ -315,36 +317,45 @@
           }
         );
         if (response.ok) {
-          const data = await response.text();
-          return JSON.parse(data);
+          return JSON.parse(await response.text());
         }
       } catch (error) {
-        console.error("Error:", error);
+        console.error(error);
       }
     }
 
-    function setBackupValueOnPage() {
-      let lottery = "";
-      lottery += `name=${columns.name}\n`;
-      for (let index = 0; index < 30; index++) {
-        lottery += `c1FNR_${index}=${columns.c1FNR[index]}\nc1FR_${index}=${columns.c1FR[index]}\n`;
-        lottery += `c2FNR_${index}=${columns.c2FNR[index]}\nc2FR_${index}=${columns.c2FR[index]}\n`;
-        lottery += `c3FNR_${index}=${columns.c3FNR[index]}\nc3FR_${index}=${columns.c3FR[index]}\n`;
-        lottery += `c4FNR_${index}=${columns.c4FNR[index]}\nc4FR_${index}=${
-          columns.c4FR[index]
-        }${index > 28 ? "" : "\n"}`;
-      }
+    function setContentElement(position, value) {
+      return [
+        `row_${parseInt(position[1]) + 1}`,
+        keyOnColumns.indexOf(position[0]),
+        value,
+      ];
+    }
+
+    async function setBackupValueOnPage(values) {
       try {
-        const response = fetch("https://lottery-api-sigma.vercel.app/update", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ page: page, content: lottery }),
+        const url =
+          values.length > 1
+            ? `https://lot-server.vercel.app/update-content`
+            : `https://lot-server.vercel.app/update-name`;
+
+        const body =
+          values.length > 1
+            ? JSON.stringify({
+                page_number: page,
+                current_row: values[0],
+                row_index: values[1],
+                value: values[2],
+              })
+            : JSON.stringify({ page_number: page, name: values[0] });
+
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: body,
         });
-        if (response.ok) {
-          console.log(response.text);
-        }
+
+        console.log(body);
       } catch (error) {
         console.error("Error:", error);
       }
