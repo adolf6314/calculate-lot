@@ -76,6 +76,9 @@
       >
         9
       </button>
+      <button class="col-3 b-darkorange fs-18" onclick="captureWebPage()">
+        บันทึกภาพ
+      </button>
     </div>
     <div class="container-grid">
       <input
@@ -360,6 +363,21 @@
         console.error("Error:", error);
       }
     }
+
+    function captureWebPage() {
+      const element = document.documentElement;
+
+      html2canvas(element).then((canvas) => {
+        const link = document.createElement("a");
+        link.download = "webpage_screenshot.png";
+        const imageDataUrl = canvas.toDataURL("image/png");
+        link.href = imageDataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }
     window.onload = createBodyLot;
   </script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </html>
